@@ -33,6 +33,6 @@ build/
 
 ### VS Code ###
 .vscode/
-!**/src/main/java/org.formationApp/DB/ConnectToDB
+!**/src/main/java/org.formationApp/DB/ConnectToDB.java
 ### Mac OS ###
 .DS_Store
