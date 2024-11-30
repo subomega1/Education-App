@@ -1,24 +1,28 @@
 package org.formationApp.UI;
 
+import org.formationApp.UI.Theme_Resources.Design_Assets;
+
 import javax.swing.*;
 import java.awt.*;
 
-public class MainFrame {
+public class MainFrame extends  JFrame{
     final String  title="Education.io";
-    final int width =1200 ;
-    final  int height=800;
-    static class  BlackColor{
-       final static int  r= 39,g=38,b=44;
-    }
+    final int width =1000 ;
+    final  int height=600;
 
-    public void  createFrame(){
-        JFrame frame = new JFrame(title);
-        frame.setSize(width,height);
-        frame.getContentPane().setBackground(new Color(BlackColor.r,BlackColor.g,BlackColor.b));
-        frame.setLocationRelativeTo(null);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setVisible(true);
-        frame.setResizable(false);
-    }
+        public MainFrame(){
+            this.setTitle(title);
+            this.setSize(width,height);
+            this.setLocationRelativeTo(null);
+            this.getContentPane().setBackground(new Color(Design_Assets.BlackColor.r, Design_Assets.BlackColor.g, Design_Assets.BlackColor.b));
+            this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            this.setLayout(new FlowLayout(FlowLayout.CENTER, 0, 50));
+            this.setResizable(false);
+
+
+        }
+
+
+
 
 }
