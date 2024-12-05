@@ -6,8 +6,8 @@ import java.sql.SQLException;
 
 public class ConnectToDB {
 
-    public Connection getConnection() throws SQLException {
-        String password = "";
+    public static Connection getConnection() throws SQLException {
+        String password = "sfar";
         String user = "root";
         String url = "jdbc:mysql://localhost:3306/fomation_app";
         Connection connection = DriverManager.getConnection(url, user, password);

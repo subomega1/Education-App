@@ -1,13 +1,13 @@
 package org.formationApp;
 
 import org.formationApp.UI.MainFrame;
-import org.formationApp.UI.Pages.Login;
+import org.formationApp.UI.Pages.LoginPage;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
 
         MainFrame mainFrame = new MainFrame();
-        new Login(mainFrame);
+        new LoginPage(mainFrame);
 
 
 

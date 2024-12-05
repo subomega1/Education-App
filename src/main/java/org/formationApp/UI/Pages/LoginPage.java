@@ -1,14 +1,15 @@
 package org.formationApp.UI.Pages;
 
 import org.formationApp.UI.Theme_Resources.Design_Assets;
+import org.formationApp.controllers.AuthController;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
-public class Login {
+public class LoginPage {
 
-    public Login(Frame frame){
+    public LoginPage(Frame frame)  throws Exception{
         // Note: This panel is used for layout and positioning purposes.
         // Main panel ( centred in  the Frame)
 
@@ -113,17 +114,34 @@ public class Login {
         sumbitButton.setFont(new Font("Monospaced", Font.BOLD, 20));
         sumbitButton.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
-                String username = usernameField.getText();
-                char[] password = passwordField.getPassword();
-                String passwordString = new String(password); // Convert char[] to String if needed
-                if (usernameField.getForeground()  == Color.WHITE){
-                    System.out.println("Entered Username: " + username );
+            public void actionPerformed(ActionEvent e){
+
+                    try {
+
+                if (usernameField.getForeground()  != Color.WHITE || passwordField.getForeground() != Color.WHITE){
+                    throw  new Exception("please fill the username and password fields");
                 }
-                System.out.println("Entered Password: " + passwordString);
+                            String username = usernameField.getText();
+                            char[] password = passwordField.getPassword();
+                            String passwordString = new String(password); // Convert char[] to String if needed
+                            System.out.println("Entered Username: " + username );
+                            System.out.println("Entered Password: " + passwordString);
+                            AuthController.login(username,passwordString);
+
+                            if (AuthController.logSucc == true) {
+                            frame.remove(centrePanel);
+                            frame.repaint();
+                            }
+                        } catch (Exception Error) {
+                            System.out.println( Error.getMessage());
+                        }
+
+                }
 
 
-            }
+
+
+
         });
 
         loginFormContainer.add(sumbitButton);
