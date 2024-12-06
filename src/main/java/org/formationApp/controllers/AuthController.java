@@ -10,9 +10,8 @@ import java.sql.ResultSet;
 public class AuthController {
   public static boolean logSucc =false;
 
-  public   static <spine> void login(String username , String password )  {
+  public   static  void login(String username , String password ) throws Exception  {
 
-            try {
                 if (username.isEmpty() || password.isEmpty()){
                     throw new Exception("please fill the username and password fields");}
                 else {
@@ -32,10 +31,6 @@ public class AuthController {
                         System.out.println("username is " + student.getUsername() + " and the email is " + student.getEmail());
                         logSucc = true;
                     }
-                }
-            } catch (Exception e) {
-                System.out.println("Internal server error " + e.getMessage() );
-
             }
   }
 }

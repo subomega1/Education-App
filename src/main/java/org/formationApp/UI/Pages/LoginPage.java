@@ -9,14 +9,15 @@ import java.awt.event.*;
 
 public class LoginPage {
 
-    public LoginPage(Frame frame)  throws Exception{
+    public LoginPage(Frame frame)  {
         // Note: This panel is used for layout and positioning purposes.
         // Main panel ( centred in  the Frame)
+        frame.setLayout(new FlowLayout(FlowLayout.CENTER, 0, 100));
 
 
         JPanel centrePanel = new JPanel();
         centrePanel.setBackground(new Color(Design_Assets.BlackColor.r,Design_Assets.BlackColor.g,Design_Assets.BlackColor.b));
-        centrePanel.setPreferredSize(new Dimension(600, 400));
+        centrePanel.setPreferredSize(new Dimension(600, 800));
         centrePanel.setLayout(new FlowLayout(FlowLayout.CENTER, 0, 0)); // FlowLayout for vertical layout
         frame.add(centrePanel);
 
@@ -24,21 +25,24 @@ public class LoginPage {
         //// Sub-panel for centrePanel (centred in centrePanel)
         JPanel subPanel = new JPanel();
         subPanel.setBackground(new Color(Design_Assets.BlackColor.r,Design_Assets.BlackColor.g,Design_Assets.BlackColor.b));
-        subPanel.setPreferredSize(new Dimension(600, 400));
-        subPanel.setLayout(new GridBagLayout()); // GridBagLayout for centering components
+        subPanel.setPreferredSize(new Dimension(600, 800));
+        subPanel.setLayout(new FlowLayout(FlowLayout.CENTER ,0,40)); // GridBagLayout for centering components
         centrePanel.add(subPanel);
 
         //Note: This panel is used for layout and positioning purposes.
         // loginFormContainer (centered in subPanel)
         JPanel loginFormContainer = new JPanel();
-        loginFormContainer.setPreferredSize(new Dimension(300, 350)); // Adjust dimensions as needed
+        loginFormContainer.setPreferredSize(new Dimension(500, 650)); // Adjust dimensions as needed
         loginFormContainer.setLayout(new FlowLayout(FlowLayout.CENTER, 0, 40));
         loginFormContainer.setBackground(new Color(Design_Assets.BlackColor.r,Design_Assets.BlackColor.g,Design_Assets.BlackColor.b));
         subPanel.add(loginFormContainer); // loginFormContainer is automatically centered due to GridBagLayout in subPanel
 
 
-        // Login title
 
+
+
+
+        // Login title
         JLabel loginTitle = new JLabel();
         loginTitle.setText("Login");
         loginTitle.setFont(new Font("Monospaced", Font.BOLD, 50));
@@ -46,9 +50,19 @@ public class LoginPage {
         loginTitle.setForeground(new Color(Design_Assets.IndigoColor.r,Design_Assets.IndigoColor.g,Design_Assets.IndigoColor.b));
         loginFormContainer.add(loginTitle);
 
+
+        //Error msg
+        JLabel errorMsg = new JLabel();
+        errorMsg.setText("");
+        errorMsg.setFont(new Font("Monospaced", Font.BOLD, 15));
+        errorMsg.setForeground(Color.red);
+        errorMsg.setPreferredSize(new Dimension(500,25));
+        errorMsg.setHorizontalAlignment(JLabel.CENTER);
+        loginFormContainer.add(errorMsg);
+
         // UsernameField
         JTextField usernameField = new JTextField();
-        usernameField.setPreferredSize(new Dimension(280, 40));
+        usernameField.setPreferredSize(new Dimension(400, 40));
         usernameField.setBorder(Design_Assets.IndigoBorder.border);
         usernameField.setBackground(new Color(Design_Assets.BlackColor.r,Design_Assets.BlackColor.g,Design_Assets.BlackColor.b));
         usernameField.setForeground(Color.gray); // Set text color for better visibility
@@ -76,7 +90,7 @@ public class LoginPage {
 
         // PasswordField
         JPasswordField passwordField = new JPasswordField();
-        passwordField.setPreferredSize(new Dimension(280, 40));
+        passwordField.setPreferredSize(new Dimension(400, 40));
         passwordField.setBorder(Design_Assets.IndigoBorder.border);
         passwordField.setBackground(new Color(Design_Assets.BlackColor.r,Design_Assets.BlackColor.g,Design_Assets.BlackColor.b));
         passwordField.setForeground(Color.gray);
@@ -107,7 +121,7 @@ public class LoginPage {
         loginFormContainer.add(passwordField);
 
         JButton sumbitButton = new JButton("LOGIN");
-        sumbitButton.setPreferredSize(new Dimension(280, 40));
+        sumbitButton.setPreferredSize(new Dimension(400, 40));
         sumbitButton.setBorder(Design_Assets.IndigoBorder.border);
         sumbitButton.setBackground(new Color(Design_Assets.IndigoColor.r,Design_Assets.IndigoColor.g,Design_Assets.IndigoColor.b)); // Set a visible background color
         sumbitButton.setForeground(Color.WHITE); // Set a contrasting text color
@@ -117,6 +131,8 @@ public class LoginPage {
             public void actionPerformed(ActionEvent e){
 
                     try {
+                        errorMsg.setText("");
+                        errorMsg.repaint();
 
                 if (usernameField.getForeground()  != Color.WHITE || passwordField.getForeground() != Color.WHITE){
                     throw  new Exception("please fill the username and password fields");
@@ -133,7 +149,11 @@ public class LoginPage {
                             frame.repaint();
                             }
                         } catch (Exception Error) {
+
+                            errorMsg.setText(Error.getMessage());
+                            errorMsg.repaint();
                             System.out.println( Error.getMessage());
+
                         }
 
                 }
