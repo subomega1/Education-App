@@ -1,5 +1,7 @@
 package org.formationApp.UI.Pages.components;
 
+import org.formationApp.contexs.Student_contex;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -7,7 +9,7 @@ import java.awt.event.ActionListener;
 
 public class CourseCard {
 
-     public CourseCard( JPanel courseContainer){
+     public CourseCard( JPanel courseContainer , String title ,String description){
 
         //card Component it 's a frontend design
          JPanel courseCard = new JPanel();
@@ -32,13 +34,13 @@ public class CourseCard {
          subPanelCourseTitle.add(courseTitleContainer,BorderLayout.SOUTH);
 
          // courseTitle
-         JLabel courseTitle = new JLabel("SQL introduction hghgh ");
+         JLabel courseTitle = new JLabel(title);
          courseTitle.setPreferredSize(new Dimension(210,80));
          courseTitle.setFont( new Font("Monospaced", Font.BOLD, 15));
          courseTitleContainer.add(courseTitle);
 
          // courseDescription
-         JTextArea courseDescription = new JTextArea("Discription:\nlearn the basic of sql and master it");
+         JTextArea courseDescription = new JTextArea("Discription:\n" + description);
          courseDescription.setPreferredSize(new Dimension(250,110));
          courseDescription.setFont( new Font("Monospaced", Font.BOLD, 14));
          courseDescription.setBackground(new Color(131,124,128));
@@ -72,15 +74,16 @@ public class CourseCard {
 
      }
 
-     public CourseCard(JPanel courseContainer , int courseNumber, Dimension dimension ){
-        if (courseNumber>6) {
-            int nbRows = (int) Math.ceil((double) courseNumber / 3);
+     public CourseCard(JPanel courseContainer , Dimension dimension ) throws Exception {
+        Student_contex.allCoursesUpdate();
+         if (Student_contex.allCourses.size() >6) {
+            int nbRows = (int) Math.ceil((double) Student_contex.allCourses.size() / 3);
             // System.out.println(nbRows);
             dimension.setSize(dimension.width, nbRows * 280);
             courseContainer.setPreferredSize(dimension);
         }
-         for (int i =0; i<courseNumber;i++){
-             new CourseCard(courseContainer);
+         for (int i =0; i<Student_contex.allCourses.size();i++){
+             new CourseCard(courseContainer , Student_contex.allCourses.get(i).getTitle(),Student_contex.allCourses.get(i).getDescription());
              courseContainer.repaint();
          }
 

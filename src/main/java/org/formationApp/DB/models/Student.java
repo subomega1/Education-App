@@ -1,6 +1,6 @@
 package org.formationApp.DB.models;
 
-import org.formationApp.Contex;
+import org.formationApp.contexs.Contex;
 
 public class Student extends User_model{
 

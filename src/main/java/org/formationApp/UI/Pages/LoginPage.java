@@ -1,17 +1,12 @@
 package org.formationApp.UI.Pages;
 
-import org.formationApp.Contex;
-import org.formationApp.DB.models.Student;
-import org.formationApp.DB.models.User_model;
+import org.formationApp.contexs.Contex;
 import org.formationApp.UI.Theme_Resources.Design_Assets;
 import org.formationApp.controllers.AuthController;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.Objects;
 
 public class LoginPage {
     //Contex contex;

@@ -1,5 +1,6 @@
 package org.formationApp.UI.Pages;
 
+import org.formationApp.contexs.Contex;
 import org.formationApp.UI.Pages.components.CourseCard;
 import org.formationApp.UI.Theme_Resources.Design_Assets;
 
@@ -11,7 +12,7 @@ import java.awt.event.ActionListener;
 public class StudentPage {
 
 
-    public StudentPage(Frame frame){
+    public StudentPage(Frame frame) throws Exception {
         //make the frame  borderLayout
         frame.setLayout(new BorderLayout());
 
@@ -67,7 +68,7 @@ public class StudentPage {
         title1.setFont( new Font("Monospaced", Font.BOLD, 50));
         title1.setHorizontalAlignment(SwingConstants.CENTER);
         title1.setVerticalAlignment(SwingConstants.CENTER);
-        JLabel title2 = new JLabel("sfar ahmed");
+        JLabel title2 = new JLabel(Contex.userModel.getUsername());
         title2.setFont( new Font("Monospaced", Font.BOLD, 50));
         title2.setForeground(new Color(Design_Assets.IndigoColor.r,Design_Assets.IndigoColor.g,Design_Assets.IndigoColor.b));
 
@@ -84,7 +85,7 @@ public class StudentPage {
 
 
 
-        new CourseCard(courseContainer, 6,courseContainerDimension);
+        new CourseCard(courseContainer,courseContainerDimension);
         //new CourseCard(courseContainer);
 
 
