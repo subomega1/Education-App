@@ -8,8 +8,8 @@ public class Main {
     public static void main(String[] args) throws Exception {
 
         MainFrame mainFrame = new MainFrame();
-        //new LoginPage(mainFrame);
-        new StudentPage(mainFrame);
+        new LoginPage(mainFrame);
+        //new StudentPage(mainFrame);
 
 
 

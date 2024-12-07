@@ -1,15 +1,24 @@
 package org.formationApp.UI.Pages;
 
+import org.formationApp.Contex;
+import org.formationApp.DB.models.Student;
+import org.formationApp.DB.models.User_model;
 import org.formationApp.UI.Theme_Resources.Design_Assets;
 import org.formationApp.controllers.AuthController;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.Objects;
 
 public class LoginPage {
+    //Contex contex;
 
     public LoginPage(Frame frame)  {
+
+
         // Note: This panel is used for layout and positioning purposes.
         // Main panel ( centred in  the Frame)
         frame.setLayout(new FlowLayout(FlowLayout.CENTER, 0, 100));
@@ -45,7 +54,7 @@ public class LoginPage {
         // Login title
         JLabel loginTitle = new JLabel();
         loginTitle.setText("Login");
-        loginTitle.setFont(new Font("Monospaced", Font.BOLD, 50));
+        loginTitle.setFont(new Font("Monospaced", Font.BOLD, 60));
         loginTitle.setVerticalAlignment(JLabel.CENTER);
         loginTitle.setForeground(new Color(Design_Assets.IndigoColor.r,Design_Assets.IndigoColor.g,Design_Assets.IndigoColor.b));
         loginFormContainer.add(loginTitle);
@@ -126,6 +135,7 @@ public class LoginPage {
         sumbitButton.setBackground(new Color(Design_Assets.IndigoColor.r,Design_Assets.IndigoColor.g,Design_Assets.IndigoColor.b)); // Set a visible background color
         sumbitButton.setForeground(Color.WHITE); // Set a contrasting text color
         sumbitButton.setFont(new Font("Monospaced", Font.BOLD, 20));
+        loginFormContainer.add(sumbitButton);
         sumbitButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e){
@@ -142,11 +152,13 @@ public class LoginPage {
                             String passwordString = new String(password); // Convert char[] to String if needed
                             System.out.println("Entered Username: " + username );
                             System.out.println("Entered Password: " + passwordString);
-                            AuthController.login(username,passwordString);
+                            AuthController.login(username,passwordString );
 
-                            if (AuthController.logSucc == true) {
-                            frame.remove(centrePanel);
-                            frame.repaint();
+                            if (Contex.accepted && Contex.userModel.getRole().equals("student") ) {
+                               // if ()
+                                frame.remove(centrePanel);
+                                new StudentPage(frame);
+                                frame.repaint();
                             }
                         } catch (Exception Error) {
 
@@ -162,9 +174,9 @@ public class LoginPage {
 
 
 
+
         });
 
-        loginFormContainer.add(sumbitButton);
 
 
     }
