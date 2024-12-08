@@ -152,7 +152,9 @@ public class LoginPage {
                             if (Contex.accepted && Contex.userModel.getRole().equals("student") ) {
                                // if ()
                                 frame.remove(centrePanel);
+                                System.gc();
                                 new StudentPage(frame);
+                                frame.revalidate();
                                 frame.repaint();
                             }
                         } catch (Exception Error) {

@@ -1,5 +1,7 @@
 package org.formationApp.UI.Pages;
 
+import org.formationApp.DB.models.Course_model;
+import org.formationApp.UI.Pages.components.StudentCourseCard;
 import org.formationApp.contexs.Contex;
 import org.formationApp.UI.Pages.components.CourseCard;
 import org.formationApp.UI.Theme_Resources.Design_Assets;
@@ -12,7 +14,7 @@ import java.awt.event.ActionListener;
 public class StudentPage {
 
 
-    public StudentPage(Frame frame) throws Exception {
+    public StudentPage(Frame frame)  {
         //make the frame  borderLayout
         frame.setLayout(new BorderLayout());
 
@@ -36,16 +38,7 @@ public class StudentPage {
         JPanel logoutContainer = new JPanel();
         logoutContainer.setPreferredSize(new Dimension(150,100));
         logoutContainer.setBackground(new Color(Design_Assets.BlackColor.r,Design_Assets.BlackColor.g,Design_Assets.BlackColor.b));
-        JButton logoutButton = new JButton("logout");
-        logoutButton.setForeground(new Color(Design_Assets.IndigoColor.r,Design_Assets.IndigoColor.g,Design_Assets.IndigoColor.b));
-        logoutButton.setPreferredSize(new Dimension(150,110));
-        logoutButton.setFont(new Font("Monospaced", Font.BOLD, 20));
-        logoutButton.setBorderPainted(false);
-        logoutButton.setContentAreaFilled(false);
-        logoutButton.setFocusPainted(false);
-        logoutButton.setOpaque(false);
-        logoutContainer.add(logoutButton,BorderLayout.SOUTH);
-        sidePanel.add(logoutContainer,BorderLayout.SOUTH);
+
 
 
         //  panel for  position purpose
@@ -84,8 +77,21 @@ public class StudentPage {
 
 
 
+        try {
+            new CourseCard(courseContainer,courseContainerDimension);
 
-        new CourseCard(courseContainer,courseContainerDimension);
+        } catch (Exception e) {
+            courseContainer.removeAll();
+            JLabel videMsg = new JLabel(e.getMessage());
+            videMsg.setFont( new Font("Monospaced", Font.BOLD, 50));
+            videMsg.setForeground(Color.RED);
+            videMsg.setHorizontalAlignment(Integer.parseInt(BorderLayout.CENTER));
+            videMsg.setVerticalAlignment(Integer.parseInt(BorderLayout.CENTER));
+            courseContainer.add(videMsg);
+            courseContainer.repaint();
+
+
+        }
         //new CourseCard(courseContainer);
 
 
@@ -111,9 +117,26 @@ public class StudentPage {
             @Override
             public void actionPerformed(ActionEvent e) {
 
-                courseContainer.removeAll();
-                courseContainer.repaint();
 
+                try {
+                    courseContainer.removeAll();
+                    new StudentCourseCard(courseContainer,courseContainerDimension);
+
+
+
+                } catch (Exception error) {
+                    courseContainer.removeAll();
+                    JLabel videMsg = new JLabel(error.getMessage());
+                    videMsg.setFont(new Font("Monospaced", Font.BOLD, 44));
+                    videMsg.setForeground(Color.RED);
+                    courseContainer.add(videMsg);
+
+
+                }finally {
+                    courseContainer.revalidate();
+                    courseContainer.repaint();
+
+                }
             }
         });
 
@@ -134,12 +157,58 @@ public class StudentPage {
         HomeButton.setContentAreaFilled(false);
         HomeButton.setFocusPainted(false);
         HomeButton.setOpaque(false);
+        HomeButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                courseContainer.removeAll();
+                try {
+                    new CourseCard(courseContainer,courseContainerDimension);
+
+                } catch (Exception error) {
+                    courseContainer.removeAll();
+                    JLabel videMsg = new JLabel(error.getMessage());
+                    videMsg.setFont( new Font("Monospaced", Font.BOLD, 50));
+                    videMsg.setForeground(Color.RED);
+                    courseContainer.add(videMsg);
+
+
+
+                }finally {
+                    courseContainer.revalidate();
+                    courseContainer.repaint();
+                }
+            }
+        });
 
         sidePanel.add(subSidePanel,BorderLayout.NORTH);
         subSidePanel.add(HomeButton);
         System.out.println(subSidePanel.getBackground());
 
 
+        JButton logoutButton = new JButton("logout");
+        logoutButton.setForeground(new Color(Design_Assets.IndigoColor.r,Design_Assets.IndigoColor.g,Design_Assets.IndigoColor.b));
+        logoutButton.setPreferredSize(new Dimension(150,110));
+        logoutButton.setFont(new Font("Monospaced", Font.BOLD, 20));
+        logoutButton.setBorderPainted(false);
+        logoutButton.setContentAreaFilled(false);
+        logoutButton.setFocusPainted(false);
+        logoutButton.setOpaque(false);
+        logoutContainer.add(logoutButton,BorderLayout.SOUTH);
+        sidePanel.add(logoutContainer,BorderLayout.SOUTH);
+        logoutButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Contex.accepted= false;
+                frame.remove(centrePanel);
+                frame.remove(sidePanel);
+                System.gc();
+                new LoginPage(frame);
+                frame.revalidate();
+                frame.repaint();
+
+            }
+        });
 
 
 

@@ -1,5 +1,6 @@
 package org.formationApp.UI.Pages.components;
 
+import org.formationApp.DB.models.Course_model;
 import org.formationApp.contexs.Student_contex;
 
 import javax.swing.*;
@@ -9,7 +10,7 @@ import java.awt.event.ActionListener;
 
 public class CourseCard {
 
-     public CourseCard( JPanel courseContainer , String title ,String description){
+     public CourseCard( JPanel courseContainer , String title ,String description ){
 
         //card Component it 's a frontend design
          JPanel courseCard = new JPanel();
@@ -57,7 +58,7 @@ public class CourseCard {
          courseCard.add(addCoursePanel,BorderLayout.NORTH);
 
          // addCourseButton
-         JButton addCourseButton = new JButton();
+        JButton addCourseButton = new JButton();
          addCourseButton.setPreferredSize(new Dimension(100,30));
          addCourseButton.setFont( new Font("Monospaced", Font.BOLD, 14));
          addCourseButton.setText("add");
@@ -74,19 +75,24 @@ public class CourseCard {
 
      }
 
+
+
      public CourseCard(JPanel courseContainer , Dimension dimension ) throws Exception {
         Student_contex.allCoursesUpdate();
+        courseContainer.removeAll();
+        courseContainer.repaint();
          if (Student_contex.allCourses.size() >6) {
             int nbRows = (int) Math.ceil((double) Student_contex.allCourses.size() / 3);
             // System.out.println(nbRows);
             dimension.setSize(dimension.width, nbRows * 280);
             courseContainer.setPreferredSize(dimension);
         }
-         for (int i =0; i<Student_contex.allCourses.size();i++){
-             new CourseCard(courseContainer , Student_contex.allCourses.get(i).getTitle(),Student_contex.allCourses.get(i).getDescription());
-             courseContainer.repaint();
+         for (Course_model courseModel : Student_contex.allCourses){
+             new CourseCard(courseContainer , courseModel.getTitle() , courseModel.getDescription());
+             //courseContainer.repaint();
          }
 
      }
+
 
 }
