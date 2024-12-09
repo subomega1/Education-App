@@ -1,10 +1,10 @@
 package org.formationApp.UI.Pages;
 
-import org.formationApp.DB.models.Course_model;
-import org.formationApp.UI.Pages.components.StudentCourseCard;
+import org.formationApp.UI.components.StudentCourseCard;
 import org.formationApp.contexs.Contex;
-import org.formationApp.UI.Pages.components.CourseCard;
+import org.formationApp.UI.components.CourseCard;
 import org.formationApp.UI.Theme_Resources.Design_Assets;
+import org.formationApp.contexs.Student_contex;
 
 import javax.swing.*;
 import java.awt.*;

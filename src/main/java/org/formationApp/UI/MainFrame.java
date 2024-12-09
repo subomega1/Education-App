@@ -16,7 +16,6 @@ public class MainFrame extends  JFrame{
             this.setLocationRelativeTo(null);
             this.getContentPane().setBackground(new Color(Design_Assets.BlackColor.r, Design_Assets.BlackColor.g, Design_Assets.BlackColor.b));
             this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
             this.setResizable(false);
 
 

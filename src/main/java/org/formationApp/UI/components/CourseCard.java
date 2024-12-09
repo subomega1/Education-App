@@ -1,7 +1,9 @@
-package org.formationApp.UI.Pages.components;
+package org.formationApp.UI.components;
 
 import org.formationApp.DB.models.Course_model;
+import org.formationApp.contexs.Contex;
 import org.formationApp.contexs.Student_contex;
+import org.formationApp.controllers.BuyCourse;
 
 import javax.swing.*;
 import java.awt.*;
@@ -10,7 +12,7 @@ import java.awt.event.ActionListener;
 
 public class CourseCard {
 
-     public CourseCard( JPanel courseContainer , String title ,String description ){
+     public CourseCard( JPanel courseContainer , String title ,String description  ,Dimension dimension){
 
         //card Component it 's a frontend design
          JPanel courseCard = new JPanel();
@@ -47,6 +49,7 @@ public class CourseCard {
          courseDescription.setBackground(new Color(131,124,128));
          courseDescription.setLineWrap(true);
          courseDescription.setWrapStyleWord(true);
+         courseDescription.setEditable(false);
          subPanelCourseTitle.add(courseDescription);
 
          // addCoursePanel
@@ -68,8 +71,27 @@ public class CourseCard {
          addCourseButton.addActionListener(new ActionListener() {
              @Override
              public void actionPerformed(ActionEvent e) {
-                 courseContainer.remove(courseCard);
-                 courseContainer.repaint();
+                 courseContainer.removeAll();
+                 try {
+                     BuyCourse.addStudentCourse(Contex.userModel.getEmail(),title);
+                     if (BuyCourse.affected){
+                     new CourseCard(courseContainer,dimension);
+                     }
+
+                 } catch (Exception error) {
+                     courseContainer.removeAll();
+                     JLabel videMsg = new JLabel(error.getMessage());
+                     videMsg.setFont( new Font("Monospaced", Font.BOLD, 50));
+                     videMsg.setForeground(Color.RED);
+                     courseContainer.add(videMsg);
+
+
+
+                 }finally {
+                     courseContainer.revalidate();
+                     courseContainer.repaint();
+                 }
+
              }
          });
 
@@ -88,7 +110,7 @@ public class CourseCard {
             courseContainer.setPreferredSize(dimension);
         }
          for (Course_model courseModel : Student_contex.allCourses){
-             new CourseCard(courseContainer , courseModel.getTitle() , courseModel.getDescription());
+             new CourseCard(courseContainer , courseModel.getTitle() , courseModel.getDescription(), dimension);
              //courseContainer.repaint();
          }
 

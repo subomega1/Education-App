@@ -1,12 +1,10 @@
-package org.formationApp.UI.Pages.components;
+package org.formationApp.UI.components;
 
 import org.formationApp.DB.models.Course_model;
 import org.formationApp.contexs.Student_contex;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class StudentCourseCard {
     public StudentCourseCard(JPanel courseContainer, String title, String description) {
@@ -44,6 +42,7 @@ public class StudentCourseCard {
         courseDescription.setFont(new Font("Monospaced", Font.BOLD, 14));
         courseDescription.setBackground(new Color(131, 124, 128));
         courseDescription.setLineWrap(true);
+        courseDescription.setEditable(false);
         courseDescription.setWrapStyleWord(true);
         subPanelCourseTitle.add(courseDescription);
 
