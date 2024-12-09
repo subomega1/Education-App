@@ -1,5 +1,6 @@
 package org.formationApp.controllers;
 
+import org.formationApp.DB.models.Teacher;
 import org.formationApp.contexs.Contex;
 import org.formationApp.DB.ConnectToDB;
 import org.formationApp.DB.models.Student;
@@ -28,6 +29,9 @@ public class AuthController {
                         System.out.println(resultSet.getString("role"));
                         if (resultSet.getString("role").equals("student")){
                            Contex.userModel= new Student(resultSet.getString("email"),resultSet.getString("username"));
+                        }else{
+                            Contex.userModel= new Teacher(resultSet.getString("email"),resultSet.getString("username"));
+
                         }
 
 

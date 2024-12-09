@@ -157,6 +157,13 @@ public class LoginPage {
                                 frame.revalidate();
                                 frame.repaint();
                             }
+                            else if (Contex.accepted && Contex.userModel.getRole().equals("teacher")){
+                                frame.remove(centrePanel);
+                                System.gc();
+                                new TeacherPage(frame);
+                                frame.revalidate();
+                                frame.repaint();
+                            }
                         } catch (Exception Error) {
 
                             errorMsg.setText(Error.getMessage());
