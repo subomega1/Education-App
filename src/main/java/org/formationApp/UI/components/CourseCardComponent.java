@@ -3,16 +3,16 @@ package org.formationApp.UI.components;
 import org.formationApp.DB.models.Course_model;
 import org.formationApp.contexs.Contex;
 import org.formationApp.contexs.Student_contex;
-import org.formationApp.controllers.BuyCourse;
+import org.formationApp.controllers.BuyCourseController;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class CourseCard {
+public class CourseCardComponent {
 
-     public CourseCard( JPanel courseContainer , String title ,String description  ,Dimension dimension){
+     public CourseCardComponent(JPanel courseContainer , String title , String description  , Dimension dimension){
 
         //card Component it 's a frontend design
          JPanel courseCard = new JPanel();
@@ -74,9 +74,9 @@ public class CourseCard {
              public void actionPerformed(ActionEvent e) {
                  courseContainer.removeAll();
                  try {
-                     BuyCourse.addStudentCourse(Contex.userModel.getEmail(),title);
-                     if (BuyCourse.affected){
-                     new CourseCard(courseContainer,dimension);
+                     BuyCourseController.addStudentCourse(Contex.userModel.getEmail(),title);
+                     if (BuyCourseController.affected){
+                     new CourseCardComponent(courseContainer,dimension);
                      }
 
                  } catch (Exception error) {
@@ -100,7 +100,7 @@ public class CourseCard {
 
 
 
-     public CourseCard(JPanel courseContainer , Dimension dimension ) throws Exception {
+     public CourseCardComponent(JPanel courseContainer , Dimension dimension ) throws Exception {
         Student_contex.allCoursesUpdate();
         courseContainer.removeAll();
         courseContainer.repaint();
@@ -111,7 +111,7 @@ public class CourseCard {
             courseContainer.setPreferredSize(dimension);
         }
          for (Course_model courseModel : Student_contex.allCourses){
-             new CourseCard(courseContainer , courseModel.getTitle() , courseModel.getDescription(), dimension);
+             new CourseCardComponent(courseContainer , courseModel.getTitle() , courseModel.getDescription(), dimension);
              //courseContainer.repaint();
          }
 

@@ -6,7 +6,7 @@ import org.formationApp.contexs.Contex;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 
-public class BuyCourse {
+public class BuyCourseController {
 
         public static boolean affected = false;
         public  static  void addStudentCourse( String studentId,String courseId) throws  Exception{

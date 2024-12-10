@@ -8,8 +8,8 @@ import org.formationApp.contexs.Teacher_contex;
 import javax.swing.*;
 import java.awt.*;
 
-public class CourseGotCard {
-    public CourseGotCard(JPanel courseContainer, String title, String description) {
+public class CourseGotCardComponent {
+    public CourseGotCardComponent(JPanel courseContainer, String title, String description) {
         //card Component it 's a frontend design
         JPanel courseCard = new JPanel();
         courseCard.setBackground(new Color(131,124,128));
@@ -51,7 +51,7 @@ public class CourseGotCard {
 
     }
 
-    public CourseGotCard(JPanel courseContainer, Dimension dimension) throws Exception {
+    public CourseGotCardComponent(JPanel courseContainer, Dimension dimension) throws Exception {
         if (Contex.userModel.getRole().equals("student")) {
             Student_contex.getCoursesUpdated();
             if (Student_contex.coursesBought.size() > 6) {
@@ -62,7 +62,7 @@ public class CourseGotCard {
             }
 
             for (Course_model courseModel : Student_contex.coursesBought) {
-                new CourseGotCard(courseContainer, courseModel.getTitle(), courseModel.getDescription());
+                new CourseGotCardComponent(courseContainer, courseModel.getTitle(), courseModel.getDescription());
                 //courseContainer.repaint();
             }
         }
@@ -74,7 +74,7 @@ public class CourseGotCard {
                 courseContainer.setPreferredSize(dimension);
             }
             for (Course_model courseModel : Teacher_contex.TeacherCourses) {
-                new CourseGotCard(courseContainer, courseModel.getTitle(), courseModel.getDescription());
+                new CourseGotCardComponent(courseContainer, courseModel.getTitle(), courseModel.getDescription());
                 //courseContainer.repaint();
             }
         }

@@ -1,8 +1,8 @@
 package org.formationApp.UI.Pages;
 
-import org.formationApp.UI.components.CourseGotCard;
+import org.formationApp.UI.components.CourseGotCardComponent;
 import org.formationApp.contexs.Contex;
-import org.formationApp.UI.components.CourseCard;
+import org.formationApp.UI.components.CourseCardComponent;
 import org.formationApp.UI.Theme_Resources.Design_Assets;
 
 import javax.swing.*;
@@ -77,7 +77,7 @@ public class StudentPage {
 
 
         try {
-            new CourseCard(courseContainer,courseContainerDimension);
+            new CourseCardComponent(courseContainer,courseContainerDimension);
 
         } catch (Exception e) {
             courseContainer.removeAll();
@@ -117,7 +117,7 @@ public class StudentPage {
 
                 try {
                     courseContainer.removeAll();
-                    new CourseGotCard(courseContainer,courseContainerDimension);
+                    new CourseGotCardComponent(courseContainer,courseContainerDimension);
 
 
 
@@ -160,7 +160,7 @@ public class StudentPage {
 
                 courseContainer.removeAll();
                 try {
-                    new CourseCard(courseContainer,courseContainerDimension);
+                    new CourseCardComponent(courseContainer,courseContainerDimension);
 
                 } catch (Exception error) {
                     courseContainer.removeAll();

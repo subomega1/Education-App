@@ -1,6 +1,7 @@
 package org.formationApp.UI.components;
 
 import org.formationApp.UI.Theme_Resources.Design_Assets;
+import org.formationApp.controllers.AddCourseController;
 
 import javax.swing.*;
 import javax.swing.event.DocumentEvent;
@@ -8,8 +9,8 @@ import javax.swing.event.DocumentListener;
 import java.awt.*;
 import java.awt.event.*;
 
-public class AddCourse {
-    public AddCourse(){
+public class AddCourseComponent {
+    public AddCourseComponent(){
         JFrame addCourseFrame = new JFrame("Add Course");
         addCourseFrame.setSize(500,500);
         addCourseFrame.setLocationRelativeTo(null);
@@ -77,14 +78,33 @@ public class AddCourse {
 
         JTextArea courseDescription = new JTextArea();
         courseDescription.setCaretColor(Color.white);
+        courseDescription.setForeground(Color.GRAY);
+        courseDescription.setText("Course Description");
         courseDescription.setBorder(Design_Assets.IndigoBorder.border);
         courseDescription.setBackground(new Color(Design_Assets.BlackColor.r,Design_Assets.BlackColor.g,Design_Assets.BlackColor.b));
         courseDescription.setPreferredSize(new Dimension(450,180));
         courseDescription.setFont( new Font("Monospaced", Font.BOLD, 22));
         courseDescription.setLineWrap(true);
         courseDescription.setWrapStyleWord(true);
-        courseDescription.setForeground(Color.white);
         courseDescriptionContainer.add(courseDescription);
+        courseDescription.addFocusListener(new FocusAdapter() {
+            @Override
+            public void focusGained(FocusEvent e) {
+                if (courseDescription.getText().equals("Course Description")){
+                    courseDescription.setText("");
+                    courseDescription.setForeground(Color.white);
+                }
+            }
+
+            @Override
+            public void focusLost(FocusEvent e) {
+                if (courseDescription.getText().isEmpty()){
+                    courseDescription.setText("Course Description");
+                    courseDescription.setForeground(Color.GRAY);
+                }
+            }
+        });
+
         int maxDescriptionLines = 4;
         courseDescription.getDocument().addDocumentListener(new DocumentListener() {
             @Override
@@ -122,10 +142,9 @@ public class AddCourse {
                 // Add the number of lines from the split text
                 lineCount += lines.length - 1; // Add the number of newline characters
 
-                System.out.println("Line Count: " + lineCount);
-                while (lineCount > 4) {
+                while (lineCount > maxDescriptionLines) {
                     courseDescription.setCaretPosition(courseDescription.getDocument().getLength());
-                    
+
                 }
             }
         });
@@ -144,6 +163,21 @@ public class AddCourse {
             @Override
             public void actionPerformed(ActionEvent e) {
               //addCourseFrame.setVisible(false);
+                //System.out.println(courseTitle.getText());
+                //System.out.println(courseDescription.getText());
+                try {
+                    if (courseTitle.getForeground() == Color.GRAY || courseDescription.getForeground() == Color.GRAY){
+                        throw new Exception("please fill all fields");
+                    }else {
+                        AddCourseController.addCourseTeacher(courseTitle.getText(),courseDescription.getText());
+                        if (AddCourseController.addedSucc){
+                            System.out.println("yes 7abibi");
+                        }
+                    }
+
+                } catch (Exception ex) {
+                    System.out.println(ex.getMessage());
+                }
 
             }
         });

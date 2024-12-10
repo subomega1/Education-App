@@ -1,8 +1,8 @@
 package org.formationApp.UI.Pages;
 
 import org.formationApp.UI.Theme_Resources.Design_Assets;
-import org.formationApp.UI.components.AddCourse;
-import org.formationApp.UI.components.CourseGotCard;
+import org.formationApp.UI.components.AddCourseComponent;
+import org.formationApp.UI.components.CourseGotCardComponent;
 import org.formationApp.contexs.Contex;
 
 import javax.swing.*;
@@ -76,7 +76,7 @@ public class TeacherPage {
 
 
        try {
-            new CourseGotCard(courseContainer,courseContainerDimension);
+            new CourseGotCardComponent(courseContainer,courseContainerDimension);
 
         } catch (Exception e) {
             courseContainer.removeAll();
@@ -120,7 +120,7 @@ public class TeacherPage {
         textButton1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-            new AddCourse();
+            new AddCourseComponent();
             }
         });
 
@@ -140,7 +140,7 @@ public class TeacherPage {
             public void actionPerformed(ActionEvent e) {
                 try {
                     courseContainer.removeAll();
-                    new CourseGotCard(courseContainer,courseContainerDimension);
+                    new CourseGotCardComponent(courseContainer,courseContainerDimension);
 
                 } catch (Exception error) {
                     courseContainer.removeAll();

@@ -11,7 +11,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
-public class GetCourses {
+public class GetCoursesController {
 
     public static  boolean courseExist(String s, ArrayList<Course_model> arrayList ){
         if (arrayList.isEmpty()){
