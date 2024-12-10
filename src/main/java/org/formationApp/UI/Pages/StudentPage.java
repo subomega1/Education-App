@@ -180,7 +180,7 @@ public class StudentPage {
 
         sidePanel.add(subSidePanel,BorderLayout.NORTH);
         subSidePanel.add(HomeButton);
-        System.out.println(subSidePanel.getBackground());
+
 
 
         JButton logoutButton = new JButton("logout");

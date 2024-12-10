@@ -123,6 +123,22 @@ public class LoginPage {
             }
         });
         loginFormContainer.add(passwordField);
+        JPanel sumbitButtonContainer = new JPanel();
+        sumbitButtonContainer.setPreferredSize(new Dimension(400,180));
+        sumbitButtonContainer.setLayout(new FlowLayout(FlowLayout.LEFT,0,30));
+        sumbitButtonContainer.setBackground(new Color(Design_Assets.BlackColor.r,Design_Assets.BlackColor.g,Design_Assets.BlackColor.b));
+        loginFormContainer.add(sumbitButtonContainer);
+
+        JButton redirectToSignUp = new JButton();
+        redirectToSignUp.setPreferredSize(new Dimension(400,30));
+        redirectToSignUp.setText("You have no account? Sign Up");
+        redirectToSignUp.setFont(new Font("Monospaced", Font.BOLD, 21));
+        redirectToSignUp.setForeground(new Color(Design_Assets.IndigoColor.r,Design_Assets.IndigoColor.g,Design_Assets.IndigoColor.b));
+        redirectToSignUp.setBorderPainted(false);
+        redirectToSignUp.setContentAreaFilled(false);
+        redirectToSignUp.setFocusPainted(false);
+        redirectToSignUp.setOpaque(false);
+        sumbitButtonContainer.add(redirectToSignUp);
 
         JButton sumbitButton = new JButton("LOGIN");
         sumbitButton.setPreferredSize(new Dimension(400, 40));
@@ -130,7 +146,7 @@ public class LoginPage {
         sumbitButton.setBackground(new Color(Design_Assets.IndigoColor.r,Design_Assets.IndigoColor.g,Design_Assets.IndigoColor.b)); // Set a visible background color
         sumbitButton.setForeground(Color.WHITE); // Set a contrasting text color
         sumbitButton.setFont(new Font("Monospaced", Font.BOLD, 20));
-        loginFormContainer.add(sumbitButton);
+        sumbitButtonContainer.add(sumbitButton);
         sumbitButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e){
