@@ -12,25 +12,25 @@ import java.sql.ResultSet;
 public class AuthController {
   //public static boolean logSucc =false;
 
-  public   static  void login(String username , String password  ) throws Exception  {
+  public   static  void login(String email , String password  ) throws Exception  {
 
-                if (username.isEmpty() || password.isEmpty()){
-                    throw new Exception("please fill the username and password fields");}
+                if (email.isEmpty() || password.isEmpty()){
+                    throw new Exception("please fill the email and password fields");}
                 else {
 
                     Connection connection = ConnectToDB.getConnection();
-                    PreparedStatement statement = connection.prepareStatement("select * from user_table where username = ? and password = ? ");
-                    statement.setString(1, username);
+                    PreparedStatement statement = connection.prepareStatement("select * from user_table where email = ? and password = ? ");
+                    statement.setString(1, email);
                     statement.setString(2, password);
                     ResultSet resultSet = statement.executeQuery();
                     if (!resultSet.next()) {
-                        throw new Exception("Invalid username or password.");
+                        throw new Exception("Invalid email or password.");
                     } else {
                         System.out.println(resultSet.getString("role"));
                         if (resultSet.getString("role").equals("student")){
-                           Contex.userModel= new Student_model(resultSet.getString("email"),resultSet.getString("username"));
+                           Contex.userModel= new Student_model(resultSet.getString("email"),resultSet.getString("email"));
                         }else{
-                            Contex.userModel= new Teacher_model(resultSet.getString("email"),resultSet.getString("username"));
+                            Contex.userModel= new Teacher_model(resultSet.getString("email"),resultSet.getString("email"));
 
                         }
 

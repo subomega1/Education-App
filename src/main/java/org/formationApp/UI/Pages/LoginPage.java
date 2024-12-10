@@ -65,32 +65,32 @@ public class LoginPage {
         loginFormContainer.add(errorMsg);
 
         // UsernameField
-        JTextField usernameField = new JTextField();
-        usernameField.setPreferredSize(new Dimension(400, 40));
-        usernameField.setBorder(Design_Assets.IndigoBorder.border);
-        usernameField.setBackground(new Color(Design_Assets.BlackColor.r,Design_Assets.BlackColor.g,Design_Assets.BlackColor.b));
-        usernameField.setForeground(Color.gray); // Set text color for better visibility
-        usernameField.setCaretColor(Color.white);
-        usernameField.setFont(new Font("Monospaced", Font.BOLD, 20));
-        usernameField.setText("Username");
-        usernameField.addFocusListener(new FocusAdapter() {
+        JTextField emailField = new JTextField();
+        emailField.setPreferredSize(new Dimension(400, 40));
+        emailField.setBorder(Design_Assets.IndigoBorder.border);
+        emailField.setBackground(new Color(Design_Assets.BlackColor.r,Design_Assets.BlackColor.g,Design_Assets.BlackColor.b));
+        emailField.setForeground(Color.gray); // Set text color for better visibility
+        emailField.setCaretColor(Color.white);
+        emailField.setFont(new Font("Monospaced", Font.BOLD, 20));
+        emailField.setText("Email");
+        emailField.addFocusListener(new FocusAdapter() {
             public void focusGained(FocusEvent e) {
-                if (usernameField.getText().equals("Username")) {
-                    usernameField.setText("");
-                    usernameField.setForeground(Color.white);
+                if (emailField.getText().equals("Email")) {
+                    emailField.setText("");
+                    emailField.setForeground(Color.white);
                 }
             }
 
             @Override
             public void focusLost(FocusEvent e) {
-                if (usernameField.getText().isEmpty()) {
-                    usernameField.setForeground(Color.gray);
-                    usernameField.setText("Username");
+                if (emailField.getText().isEmpty()) {
+                    emailField.setForeground(Color.gray);
+                    emailField.setText("Email");
 
                 }
             }
         });
-        loginFormContainer.add(usernameField);
+        loginFormContainer.add(emailField);
 
         // PasswordField
         JPasswordField passwordField = new JPasswordField();
@@ -139,15 +139,15 @@ public class LoginPage {
                         errorMsg.setText("");
                         errorMsg.repaint();
 
-                if (usernameField.getForeground()  != Color.WHITE || passwordField.getForeground() != Color.WHITE){
-                    throw  new Exception("please fill the username and password fields");
+                if (emailField.getForeground()  != Color.WHITE || passwordField.getForeground() != Color.WHITE){
+                    throw  new Exception("please fill the email and password fields");
                 }
-                            String username = usernameField.getText();
+                            String email = emailField.getText();
                             char[] password = passwordField.getPassword();
                             String passwordString = new String(password); // Convert char[] to String if needed
-                            System.out.println("Entered Username: " + username );
+                            System.out.println("Entered Username: " + email );
                             System.out.println("Entered Password: " + passwordString);
-                            AuthController.login(username,passwordString );
+                            AuthController.login(email,passwordString );
 
                             if (Contex.accepted && Contex.userModel.getRole().equals("student") ) {
                                // if ()
