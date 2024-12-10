@@ -6,8 +6,7 @@ import javax.swing.*;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.*;
 
 public class AddCourse {
     public AddCourse(){
@@ -36,10 +35,28 @@ public class AddCourse {
         JTextField courseTitle = new JTextField();
         courseTitle.setPreferredSize(new Dimension(440,50));
         courseTitle.setBackground(new Color(Design_Assets.BlackColor.r,Design_Assets.BlackColor.g,Design_Assets.BlackColor.b));
-        courseTitle.setForeground(Color.white);
+        courseTitle.setText("Course Title");
+        courseTitle.setForeground(Color.GRAY);
         courseTitle.setCaretColor(Color.white);
         courseTitle.setBorder(Design_Assets.IndigoBorder.border);
         courseTitle.setFont(new Font("Monospaced", Font.BOLD, 22));
+        courseTitle.addFocusListener(new FocusListener() {
+            @Override
+            public void focusGained(FocusEvent e) {
+                if (courseTitle.getText().equals("Course Title")){
+                    courseTitle.setForeground(Color.white);
+                    courseTitle.setText("");
+                }
+            }
+
+            @Override
+            public void focusLost(FocusEvent e) {
+                if (courseTitle.getText().isEmpty()){
+                    courseTitle.setText("Course Title");
+                    courseTitle.setForeground(Color.GRAY);
+                }
+            }
+        });
 
         courseTitleContainer.add(courseTitle);
 
@@ -68,7 +85,7 @@ public class AddCourse {
         courseDescription.setWrapStyleWord(true);
         courseDescription.setForeground(Color.white);
         courseDescriptionContainer.add(courseDescription);
-        int maxDescriptionLines = 6;
+        int maxDescriptionLines = 4;
         courseDescription.getDocument().addDocumentListener(new DocumentListener() {
             @Override
             public void insertUpdate(DocumentEvent e) {
@@ -77,18 +94,38 @@ public class AddCourse {
 
             @Override
             public void removeUpdate(DocumentEvent e) {
-                    checkLines();
+                checkLines();
             }
 
             @Override
             public void changedUpdate(DocumentEvent e) {
                 checkLines();
             }
-            private void checkLines(){
-                int lines = courseDescription.getLineCount();
-                if (lines>maxDescriptionLines){
+
+            private void checkLines() {
+                String text = courseDescription.getText();
+                String[] lines = text.split("\n");
+                int lineCount = 0;
+                int textAreaWidth = courseDescription.getWidth();
+                FontMetrics metrics = courseDescription.getFontMetrics(courseDescription.getFont());
+
+                for (String line : lines) {
+                    int lineWidth = metrics.stringWidth(line);
+                    if (lineWidth > textAreaWidth) {
+                        int wrappedLines = (int) Math.ceil((double) lineWidth / textAreaWidth);
+                        lineCount += wrappedLines;
+                    } else {
+                        lineCount++;
+                    }
+                }
+
+                // Add the number of lines from the split text
+                lineCount += lines.length - 1; // Add the number of newline characters
+
+                System.out.println("Line Count: " + lineCount);
+                while (lineCount > 4) {
                     courseDescription.setCaretPosition(courseDescription.getDocument().getLength());
-                    Toolkit.getDefaultToolkit().beep();
+                    
                 }
             }
         });
@@ -106,7 +143,8 @@ public class AddCourse {
         courseAddButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-              addCourseFrame.setVisible(false);
+              //addCourseFrame.setVisible(false);
+
             }
         });
 

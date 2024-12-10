@@ -78,6 +78,7 @@ public class GetCourses {
             if(!Contex.accepted || !Contex.userModel.getRole().equals("teacher")){
                 throw new Exception("you are not allowed here");
             }else {
+
                 Connection connection = ConnectToDB.getConnection();
                 PreparedStatement statement = connection.prepareStatement("SELECT title,description FROM teacher_course WHERE teacher_id=? ");
                 statement.setString(1,Contex.userModel.getEmail());
@@ -85,7 +86,7 @@ public class GetCourses {
                 if (!resultSet.isBeforeFirst()){
                     throw new Exception(" Add some courses ");
                 }else{
-                    Student_contex.coursesBought.clear();
+                    Teacher_contex.TeacherCourses.clear();
                     while (resultSet.next()){
 
                         Course_model courseModel= new Course_model(resultSet.getString("title"),resultSet.getString("description"));

@@ -126,6 +126,38 @@ public class TeacherPage {
 
 
 
+        JButton refrecshButton = new JButton("Refresh");
+        refrecshButton.setForeground(new Color(Design_Assets.IndigoColor.r,Design_Assets.IndigoColor.g,Design_Assets.IndigoColor.b));
+        refrecshButton.setPreferredSize(new Dimension(150,50));
+        refrecshButton.setFont(new Font("Monospaced", Font.BOLD, 19));
+        refrecshButton.setBorderPainted(false);
+        refrecshButton.setContentAreaFilled(false);
+        refrecshButton.setFocusPainted(false);
+        refrecshButton.setOpaque(false);
+        subSidePanel.add(refrecshButton);
+        refrecshButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    courseContainer.removeAll();
+                    new CourseGotCard(courseContainer,courseContainerDimension);
+
+                } catch (Exception error) {
+                    courseContainer.removeAll();
+                    JLabel videMsg = new JLabel(error.getMessage());
+                    videMsg.setFont( new Font("Monospaced", Font.BOLD, 50));
+                    videMsg.setForeground(Color.white);
+                    courseContainer.add(videMsg);
+
+
+
+                }finally {
+
+                    courseContainer.revalidate();
+                    courseContainer.repaint();
+                }
+            }
+        });
 
 
 

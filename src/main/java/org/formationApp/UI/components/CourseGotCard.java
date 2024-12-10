@@ -60,6 +60,7 @@ public class CourseGotCard {
                 dimension.setSize(dimension.width, nbRows * 280);
                 courseContainer.setPreferredSize(dimension);
             }
+
             for (Course_model courseModel : Student_contex.coursesBought) {
                 new CourseGotCard(courseContainer, courseModel.getTitle(), courseModel.getDescription());
                 //courseContainer.repaint();
