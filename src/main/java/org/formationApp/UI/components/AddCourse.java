@@ -53,7 +53,7 @@ public class AddCourse {
 
         JLabel courseDescriptionLabel = new JLabel("Course Description");
         courseDescriptionLabel.setFont( new Font("Monospaced", Font.BOLD, 22));
-        courseDescriptionLabel.setPreferredSize(new Dimension(430,40));
+        courseDescriptionLabel.setPreferredSize(new Dimension(450,40));
         courseDescriptionContainer.add(courseDescriptionLabel);
         courseDescriptionLabel.setForeground(new Color(Design_Assets.IndigoColor.r,Design_Assets.IndigoColor.g,Design_Assets.IndigoColor.b));
 
@@ -62,7 +62,7 @@ public class AddCourse {
         courseDescription.setCaretColor(Color.white);
         courseDescription.setBorder(Design_Assets.IndigoBorder.border);
         courseDescription.setBackground(new Color(Design_Assets.BlackColor.r,Design_Assets.BlackColor.g,Design_Assets.BlackColor.b));
-        courseDescription.setPreferredSize(new Dimension(430,180));
+        courseDescription.setPreferredSize(new Dimension(450,180));
         courseDescription.setFont( new Font("Monospaced", Font.BOLD, 22));
         courseDescription.setLineWrap(true);
         courseDescription.setWrapStyleWord(true);
