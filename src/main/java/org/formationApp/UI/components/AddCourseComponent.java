@@ -12,6 +12,7 @@ import java.awt.event.*;
 public class AddCourseComponent {
     public AddCourseComponent(){
         JFrame addCourseFrame = new JFrame("Add Course");
+        addCourseFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         addCourseFrame.setSize(500,500);
         addCourseFrame.setLocationRelativeTo(null);
         addCourseFrame.getContentPane().setBackground(new Color(Design_Assets.BlackColor.r,Design_Assets.BlackColor.g,Design_Assets.BlackColor.b));
@@ -171,12 +172,41 @@ public class AddCourseComponent {
                     }else {
                         AddCourseController.addCourseTeacher(courseTitle.getText(),courseDescription.getText());
                         if (AddCourseController.addedSucc){
-                            System.out.println("yes 7abibi");
+                            addCourseFrame.dispose();
                         }
                     }
 
                 } catch (Exception ex) {
-                    System.out.println(ex.getMessage());
+
+                    JFrame frame = new JFrame("Error");
+                    frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                    frame.setSize(400, 200);
+                    frame.setLocationRelativeTo(null); // Center the frame on the screen
+
+                    // Create a custom panel for the message
+                    JPanel panel = new JPanel();
+                    panel.setBackground(new Color(Design_Assets.BlackColor.r, Design_Assets.BlackColor.g, Design_Assets.BlackColor.b));
+                    panel.setLayout(new BorderLayout());
+
+                    // Create a label for the error message
+                    JLabel messageLabel = new JLabel(ex.getMessage(), SwingConstants.CENTER);
+                    messageLabel.setFont(new Font("Monospaced", Font.BOLD, 22));
+                    messageLabel.setForeground(Color.WHITE); // Set text color to white for better visibility
+                    panel.add(messageLabel, BorderLayout.CENTER);
+
+                    // Create a button to close the dialog
+                    JButton closeButton = new JButton("Close");
+                    closeButton.setForeground(new Color(Design_Assets.IndigoColor.r,Design_Assets.IndigoColor.g,Design_Assets.IndigoColor.b));
+                    closeButton.setFont(new Font("Monospaced", Font.BOLD, 22));
+                    closeButton.setBackground(new Color(Design_Assets.BlackColor.r, Design_Assets.BlackColor.g, Design_Assets.BlackColor.b));
+                    closeButton.setPreferredSize(new Dimension(280,40));
+                    closeButton.setBorder(Design_Assets.IndigoBorder.border);
+                    closeButton.addActionListener(event -> frame.dispose());
+                    panel.add(closeButton, BorderLayout.SOUTH);
+
+                    // Add the panel to the frame
+                    frame.setContentPane(panel);
+                    frame.setVisible(true);
                 }
 
             }
