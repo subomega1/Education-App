@@ -2,6 +2,7 @@ package org.formationApp.UI.Pages;
 
 import org.formationApp.UI.Theme_Resources.Design_Assets;
 import org.formationApp.UI.components.AddCourse;
+import org.formationApp.UI.components.CourseGotCard;
 import org.formationApp.contexs.Contex;
 
 import javax.swing.*;
@@ -74,22 +75,23 @@ public class TeacherPage {
 
 
 
-       // try {
-         //   new CourseCard(courseContainer,courseContainerDimension);
+       try {
+            new CourseGotCard(courseContainer,courseContainerDimension);
 
-        //} catch (Exception e) {
-          //  courseContainer.removeAll();
-            //JLabel videMsg = new JLabel(e.getMessage());
-            //videMsg.setFont( new Font("Monospaced", Font.BOLD, 50));
-            //videMsg.setForeground(Color.RED);
-          //  videMsg.setHorizontalAlignment(Integer.parseInt(BorderLayout.CENTER));
-            //videMsg.setVerticalAlignment(Integer.parseInt(BorderLayout.CENTER));
-            //courseContainer.add(videMsg);
-            //courseContainer.repaint();
+        } catch (Exception e) {
+            courseContainer.removeAll();
+            JLabel videMsg = new JLabel(e.getMessage());
+            videMsg.setFont( new Font("Monospaced", Font.BOLD, 50));
+            videMsg.setForeground(Color.white);
+            courseContainer.add(videMsg);
 
 
-        //}
-        //new CourseCard(courseContainer);
+
+        }finally {
+
+           courseContainer.revalidate();
+           courseContainer.repaint();
+       }
 
 
 

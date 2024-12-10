@@ -1,10 +1,9 @@
 package org.formationApp.UI.Pages;
 
-import org.formationApp.UI.components.StudentCourseCard;
+import org.formationApp.UI.components.CourseGotCard;
 import org.formationApp.contexs.Contex;
 import org.formationApp.UI.components.CourseCard;
 import org.formationApp.UI.Theme_Resources.Design_Assets;
-import org.formationApp.contexs.Student_contex;
 
 import javax.swing.*;
 import java.awt.*;
@@ -83,10 +82,8 @@ public class StudentPage {
         } catch (Exception e) {
             courseContainer.removeAll();
             JLabel videMsg = new JLabel(e.getMessage());
-            videMsg.setFont( new Font("Monospaced", Font.BOLD, 50));
-            videMsg.setForeground(Color.RED);
-            videMsg.setHorizontalAlignment(Integer.parseInt(BorderLayout.CENTER));
-            videMsg.setVerticalAlignment(Integer.parseInt(BorderLayout.CENTER));
+            videMsg.setFont( new Font("Monospaced", Font.BOLD, 44));
+            videMsg.setForeground(Color.white);
             courseContainer.add(videMsg);
             courseContainer.repaint();
 
@@ -120,7 +117,7 @@ public class StudentPage {
 
                 try {
                     courseContainer.removeAll();
-                    new StudentCourseCard(courseContainer,courseContainerDimension);
+                    new CourseGotCard(courseContainer,courseContainerDimension);
 
 
 
@@ -128,7 +125,7 @@ public class StudentPage {
                     courseContainer.removeAll();
                     JLabel videMsg = new JLabel(error.getMessage());
                     videMsg.setFont(new Font("Monospaced", Font.BOLD, 44));
-                    videMsg.setForeground(Color.RED);
+                    videMsg.setForeground(Color.white);
                     courseContainer.add(videMsg);
 
 
@@ -168,8 +165,8 @@ public class StudentPage {
                 } catch (Exception error) {
                     courseContainer.removeAll();
                     JLabel videMsg = new JLabel(error.getMessage());
-                    videMsg.setFont( new Font("Monospaced", Font.BOLD, 50));
-                    videMsg.setForeground(Color.RED);
+                    videMsg.setFont( new Font("Monospaced", Font.BOLD, 44));
+                    videMsg.setForeground(Color.white);
                     courseContainer.add(videMsg);
 
 

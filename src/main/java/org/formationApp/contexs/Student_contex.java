@@ -16,10 +16,7 @@ public class Student_contex {
    public  static void  allCoursesUpdate() throws Exception {
          allCourses.clear();
       GetCourses.allCourses();
-      for (Course_model courseModel : allCourses){
-         System.out.println(courseModel.getTitle() +" 55 "+  courseModel.getDescription() );
-      }
-      System.out.println(allCourses.size());
+
 
    }
    public  static void  getCoursesUpdated() throws Exception {

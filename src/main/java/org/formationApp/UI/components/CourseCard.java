@@ -44,6 +44,7 @@ public class CourseCard {
 
          // courseDescription
          JTextArea courseDescription = new JTextArea("Discription:\n" + description);
+         courseDescription.setCaretColor(new Color(131, 124, 128));
          courseDescription.setPreferredSize(new Dimension(250,110));
          courseDescription.setFont( new Font("Monospaced", Font.BOLD, 14));
          courseDescription.setBackground(new Color(131,124,128));
