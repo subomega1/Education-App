@@ -227,7 +227,7 @@ public class SignupPage {
                     AuthController.signUp(email,username , passwordEntred,confirmedPassword,role );
                     if (AuthController.createdSucc){
                         //this frame to display error msg
-                        JFrame frame = new JFrame("Error");
+                        JFrame frame = new JFrame("");
                         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
                         frame.setSize(400, 200);
                         frame.setLocationRelativeTo(null); // Center the frame on the screen
