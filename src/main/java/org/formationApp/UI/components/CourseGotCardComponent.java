@@ -51,19 +51,19 @@ public class CourseGotCardComponent {
 
     }
 
+    //Dynamic scroll bar for courses
     public CourseGotCardComponent(JPanel courseContainer, Dimension dimension) throws Exception {
         if (Contex.userModel.getRole().equals("student")) {
             Student_contex.getCoursesUpdated();
             if (Student_contex.coursesBought.size() > 6) {
                 int nbRows = (int) Math.ceil((double) Student_contex.coursesBought.size() / 3);
-                System.out.println(nbRows);
                 dimension.setSize(dimension.width, nbRows * 280);
                 courseContainer.setPreferredSize(dimension);
             }
 
             for (Course_model courseModel : Student_contex.coursesBought) {
                 new CourseGotCardComponent(courseContainer, courseModel.getTitle(), courseModel.getDescription());
-                //courseContainer.repaint();
+
             }
         }
         else {
@@ -75,7 +75,6 @@ public class CourseGotCardComponent {
             }
             for (Course_model courseModel : Teacher_contex.TeacherCourses) {
                 new CourseGotCardComponent(courseContainer, courseModel.getTitle(), courseModel.getDescription());
-                //courseContainer.repaint();
             }
         }
 

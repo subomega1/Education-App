@@ -11,6 +11,8 @@ import java.awt.event.*;
 
 public class AddCourseComponent {
     public AddCourseComponent(){
+
+        // add Course Frame
         JFrame addCourseFrame = new JFrame("Add Course");
         addCourseFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         addCourseFrame.setSize(500,500);
@@ -18,8 +20,9 @@ public class AddCourseComponent {
         addCourseFrame.getContentPane().setBackground(new Color(Design_Assets.BlackColor.r,Design_Assets.BlackColor.g,Design_Assets.BlackColor.b));
         addCourseFrame.setResizable(false);
         addCourseFrame.setLayout(new FlowLayout(FlowLayout.CENTER,0,18));
+        addCourseFrame.setIconImage(new ImageIcon("src/main/java/org/formationApp/UI/Theme_Resources/unitedPic.png").getImage());
 
-
+        //Course Title Container
         JPanel courseTitleContainer = new JPanel();
         courseTitleContainer.setPreferredSize(new Dimension(480,100));
         courseTitleContainer.setBackground(new Color(Design_Assets.BlackColor.r,Design_Assets.BlackColor.g,Design_Assets.BlackColor.b));
@@ -28,12 +31,14 @@ public class AddCourseComponent {
 
 
 
+        //Title Label
         JLabel courseTitleLabel = new JLabel("Course Title");
         courseTitleLabel.setFont( new Font("Monospaced", Font.BOLD, 22));
         courseTitleLabel.setForeground(new Color(Design_Assets.IndigoColor.r,Design_Assets.IndigoColor.g,Design_Assets.IndigoColor.b));
         courseTitleLabel.setPreferredSize(new Dimension(430,20));
         courseTitleContainer.add(courseTitleLabel);
 
+        // Input Field for Title
         JTextField courseTitle = new JTextField();
         courseTitle.setPreferredSize(new Dimension(440,50));
         courseTitle.setBackground(new Color(Design_Assets.BlackColor.r,Design_Assets.BlackColor.g,Design_Assets.BlackColor.b));
@@ -63,20 +68,21 @@ public class AddCourseComponent {
         courseTitleContainer.add(courseTitle);
 
 
-
+        //Course Description Container
         JPanel courseDescriptionContainer = new JPanel();
         courseDescriptionContainer.setPreferredSize(new Dimension(480,250));
         courseDescriptionContainer.setBackground(new Color(Design_Assets.BlackColor.r,Design_Assets.BlackColor.g,Design_Assets.BlackColor.b));
         courseDescriptionContainer.setLayout(new FlowLayout(FlowLayout.LEFT ,15,15));
         addCourseFrame.add(courseDescriptionContainer);
 
+        //  Description Course Label
         JLabel courseDescriptionLabel = new JLabel("Course Description");
         courseDescriptionLabel.setFont( new Font("Monospaced", Font.BOLD, 22));
         courseDescriptionLabel.setPreferredSize(new Dimension(450,40));
         courseDescriptionContainer.add(courseDescriptionLabel);
         courseDescriptionLabel.setForeground(new Color(Design_Assets.IndigoColor.r,Design_Assets.IndigoColor.g,Design_Assets.IndigoColor.b));
 
-
+        // Input field for Description
         JTextArea courseDescription = new JTextArea();
         courseDescription.setCaretColor(Color.white);
         courseDescription.setForeground(Color.GRAY);
@@ -105,7 +111,7 @@ public class AddCourseComponent {
                 }
             }
         });
-
+        // To control the user input in the description field
         int maxDescriptionLines = 4;
         courseDescription.getDocument().addDocumentListener(new DocumentListener() {
             @Override
@@ -150,6 +156,7 @@ public class AddCourseComponent {
             }
         });
 
+        //Course Add Button
         JButton courseAddButton = new JButton();
         courseAddButton.setPreferredSize(new Dimension(450 ,40));
         courseAddButton.setFont( new Font("Monospaced", Font.BOLD, 22));
@@ -157,15 +164,12 @@ public class AddCourseComponent {
         courseAddButton.setBackground(new Color(Design_Assets.BlackColor.r,Design_Assets.BlackColor.g,Design_Assets.BlackColor.b));
         courseAddButton.setForeground(new Color(Design_Assets.IndigoColor.r,Design_Assets.IndigoColor.g,Design_Assets.IndigoColor.b));
         courseAddButton.setBorder(Design_Assets.IndigoBorder.border);
-
-
         addCourseFrame.add(courseAddButton);
+
+
         courseAddButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-              //addCourseFrame.setVisible(false);
-                //System.out.println(courseTitle.getText());
-                //System.out.println(courseDescription.getText());
                 try {
                     if (courseTitle.getForeground() == Color.GRAY || courseDescription.getForeground() == Color.GRAY){
                         throw new Exception("please fill all fields");
@@ -173,15 +177,19 @@ public class AddCourseComponent {
                         AddCourseController.addCourseTeacher(courseTitle.getText(),courseDescription.getText());
                         if (AddCourseController.addedSucc){
                             addCourseFrame.dispose();
+                            AddCourseController.addedSucc =false;
                         }
                     }
 
                 } catch (Exception ex) {
 
+
+
                     JFrame frame = new JFrame("Error");
                     frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
                     frame.setSize(400, 200);
                     frame.setLocationRelativeTo(null); // Center the frame on the screen
+                    frame.setIconImage(new ImageIcon("src/main/java/org/formationApp/UI/Theme_Resources/unitedPic.png").getImage());
 
                     // Create a custom panel for the message
                     JPanel panel = new JPanel();

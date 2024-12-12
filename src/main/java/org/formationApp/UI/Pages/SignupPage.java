@@ -166,7 +166,7 @@ public class SignupPage {
             }
         });
         signupFormContainer.add(confirmPassword);
-
+        // Role chooser
         String[] roles = {"Pick role", "student", "teacher"};
         JComboBox<String> rolesOption = new JComboBox<>(roles);
         rolesOption.setPreferredSize(new Dimension(400, 40));
@@ -175,7 +175,7 @@ public class SignupPage {
         rolesOption.setForeground(Color.WHITE);
         rolesOption.setBorder(null);
 
-// Custom renderer to maintain consistent background
+
 
 
         signupFormContainer.add(rolesOption);
@@ -188,6 +188,7 @@ public class SignupPage {
         submitButtonContainer.setBackground(new Color(Design_Assets.BlackColor.r, Design_Assets.BlackColor.g, Design_Assets.BlackColor.b));
         signupFormContainer.add(submitButtonContainer);
 
+        //Sumbit Button
         JButton submitButton = new JButton("SIGN UP");
         submitButton.setPreferredSize(new Dimension(400, 40));
         submitButton.setBorder(Design_Assets.IndigoBorder.border);
@@ -220,15 +221,17 @@ public class SignupPage {
                     String username = usernameField.getText();
                     String email = emailField.getText();
                     String role = rolesOption.getSelectedItem().toString();
-                    System.out.println(role);
+
 
 
                     AuthController.signUp(email,username , passwordEntred,confirmedPassword,role );
                     if (AuthController.createdSucc){
+                        //this frame to display error msg
                         JFrame frame = new JFrame("Error");
                         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
                         frame.setSize(400, 200);
                         frame.setLocationRelativeTo(null); // Center the frame on the screen
+                        frame.setIconImage(new ImageIcon("src/main/java/org/formationApp/UI/Theme_Resources/unitedPic.png").getImage());
 
                         // Create a custom panel for the message
                         JPanel panel = new JPanel();
@@ -261,12 +264,14 @@ public class SignupPage {
                    frame.remove(centrePanel);
                     System.gc();
                     new LoginPage(frame);
-                    frame.revalidate();
-                    frame.repaint();
+
                 } catch (Exception error) {
                     errorMsg.setText(error.getMessage());
                     errorMsg.repaint();
-                    System.out.println(error.getMessage());
+
+                }finally {
+                    frame.revalidate();
+                    frame.repaint();
                 }
             }
         });

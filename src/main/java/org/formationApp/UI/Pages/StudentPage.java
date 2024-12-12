@@ -17,7 +17,6 @@ public class StudentPage {
         //make the frame  borderLayout
         frame.setLayout(new BorderLayout());
 
-
         //side panel
         JPanel sidePanel = new JPanel();
         sidePanel.setPreferredSize(new Dimension(150,800));
@@ -32,13 +31,10 @@ public class StudentPage {
         subSidePanel.setLayout(new FlowLayout(FlowLayout.CENTER ,10,10));
         subSidePanel.setBackground(new Color(Design_Assets.BlackColor.r,Design_Assets.BlackColor.g,Design_Assets.BlackColor.b));
 
-
         //logout container
         JPanel logoutContainer = new JPanel();
         logoutContainer.setPreferredSize(new Dimension(150,100));
         logoutContainer.setBackground(new Color(Design_Assets.BlackColor.r,Design_Assets.BlackColor.g,Design_Assets.BlackColor.b));
-
-
 
         //  panel for  position purpose
         JPanel centrePanel = new JPanel();
@@ -60,21 +56,20 @@ public class StudentPage {
         title1.setFont( new Font("Monospaced", Font.BOLD, 50));
         title1.setHorizontalAlignment(SwingConstants.CENTER);
         title1.setVerticalAlignment(SwingConstants.CENTER);
+        headerPanel.add(title1);
+        //Title 2
         JLabel title2 = new JLabel(Contex.userModel.getUsername());
         title2.setFont( new Font("Monospaced", Font.BOLD, 50));
         title2.setForeground(new Color(Design_Assets.IndigoColor.r,Design_Assets.IndigoColor.g,Design_Assets.IndigoColor.b));
-
-        headerPanel.add(title1);
         headerPanel.add(title2);
 
+        //Course Container
         JPanel courseContainer = new JPanel();
         courseContainer.setBackground(new Color(Design_Assets.BlackColor.r,Design_Assets.BlackColor.g,Design_Assets.BlackColor.b));
         courseContainer.setLayout(new FlowLayout(FlowLayout.LEFT,40,20));
         Dimension  courseContainerDimension = new Dimension(900,500);
         courseContainer.setPreferredSize(courseContainerDimension);
         centrePanel.add(courseContainer,BorderLayout.CENTER);
-
-
 
         try {
             new CourseCardComponent(courseContainer,courseContainerDimension);
@@ -87,25 +82,16 @@ public class StudentPage {
             courseContainer.add(videMsg);
             courseContainer.repaint();
 
-
         }
-        //new CourseCard(courseContainer);
 
-
-
-
-
-
+        //Scroll Pane fpr more than 6 courses
         JScrollPane scrollPane = new JScrollPane(courseContainer);
-        //scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
         scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
         scrollPane.setBorder(null);
         // Add the JScrollPane to CentrePanel
         centrePanel.add(scrollPane, BorderLayout.CENTER);
 
-
-
-
+        //Side bar button
         JButton textButton1 = new JButton("My course");
         textButton1.setForeground(new Color(Design_Assets.IndigoColor.r,Design_Assets.IndigoColor.g,Design_Assets.IndigoColor.b));
         textButton1.setPreferredSize(new Dimension(150,50));
@@ -113,7 +99,6 @@ public class StudentPage {
         textButton1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
 
                 try {
                     courseContainer.removeAll();
@@ -136,20 +121,19 @@ public class StudentPage {
                 }
             }
         });
-
+        // to disable all default style
         textButton1.setBorderPainted(false);
         textButton1.setContentAreaFilled(false);
         textButton1.setFocusPainted(false);
         textButton1.setOpaque(false);
-
         subSidePanel.add(textButton1);
-        JButton HomeButton = new JButton("Home");
 
+        //Side Pane button
+        JButton HomeButton = new JButton("Home");
         HomeButton.setForeground(new Color(Design_Assets.IndigoColor.r,Design_Assets.IndigoColor.g,Design_Assets.IndigoColor.b));
         HomeButton.setPreferredSize(new Dimension(150,50));
-
         HomeButton.setFont(new Font("Monospaced", Font.BOLD, 20));
-
+        //to disable all default button style
         HomeButton.setBorderPainted(false);
         HomeButton.setContentAreaFilled(false);
         HomeButton.setFocusPainted(false);
@@ -169,8 +153,6 @@ public class StudentPage {
                     videMsg.setForeground(Color.white);
                     courseContainer.add(videMsg);
 
-
-
                 }finally {
                     courseContainer.revalidate();
                     courseContainer.repaint();
@@ -182,7 +164,7 @@ public class StudentPage {
         subSidePanel.add(HomeButton);
 
 
-
+        //side pane button
         JButton logoutButton = new JButton("logout");
         logoutButton.setForeground(new Color(Design_Assets.IndigoColor.r,Design_Assets.IndigoColor.g,Design_Assets.IndigoColor.b));
         logoutButton.setPreferredSize(new Dimension(150,110));
@@ -206,12 +188,6 @@ public class StudentPage {
 
             }
         });
-
-
-
-
-
-
     }
 
 

@@ -9,23 +9,9 @@ import org.formationApp.contexs.Teacher_contex;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.util.ArrayList;
+
 
 public class GetCoursesController {
-
-    public static  boolean courseExist(String s, ArrayList<Course_model> arrayList ){
-        if (arrayList.isEmpty()){
-            return  true;
-        }
-        int i =0;
-        while (i<arrayList.size()){
-            if (s.equals(arrayList.get(i).getTitle())){
-                return false;
-            }
-        }
-        return true;
-    }
-
 
     public static  void allCourses() throws Exception {
         if (!Contex.accepted || !Contex.userModel.getRole().equals("student")){
@@ -44,7 +30,6 @@ public class GetCoursesController {
 
                     Course_model courseModel = new Course_model(resultSet.getString("title"), resultSet.getString("description"));
                     Student_contex.allCourses.add(courseModel);
-                    System.out.println(courseModel.getTitle() + " " + courseModel.getDescription());
                 }
             }
         }
@@ -84,6 +69,9 @@ public class GetCoursesController {
                 statement.setString(1,Contex.userModel.getEmail());
                 ResultSet resultSet = statement.executeQuery();
                 if (!resultSet.isBeforeFirst()){
+                    resultSet.close();
+                    statement.close();
+                    connection.close();
                     throw new Exception(" Add some courses ");
                 }else{
                     Teacher_contex.TeacherCourses.clear();
@@ -94,8 +82,11 @@ public class GetCoursesController {
 
 
                     }
-                }
 
+                }
+                resultSet.close();
+                statement.close();
+                connection.close();
             }
         }
 

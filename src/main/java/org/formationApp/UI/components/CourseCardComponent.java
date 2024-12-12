@@ -77,6 +77,7 @@ public class CourseCardComponent {
                      BuyCourseController.addStudentCourse(Contex.userModel.getEmail(),title);
                      if (BuyCourseController.affected){
                      new CourseCardComponent(courseContainer,dimension);
+                     BuyCourseController.affected=false;
                      }
 
                  } catch (Exception error) {
@@ -99,20 +100,18 @@ public class CourseCardComponent {
      }
 
 
-
+     //Dynamic scroll bar for courses
      public CourseCardComponent(JPanel courseContainer , Dimension dimension ) throws Exception {
         Student_contex.allCoursesUpdate();
         courseContainer.removeAll();
         courseContainer.repaint();
          if (Student_contex.allCourses.size() >6) {
             int nbRows = (int) Math.ceil((double) Student_contex.allCourses.size() / 3);
-            // System.out.println(nbRows);
             dimension.setSize(dimension.width, nbRows * 280);
             courseContainer.setPreferredSize(dimension);
         }
          for (Course_model courseModel : Student_contex.allCourses){
              new CourseCardComponent(courseContainer , courseModel.getTitle() , courseModel.getDescription(), dimension);
-             //courseContainer.repaint();
          }
 
      }

@@ -26,15 +26,21 @@ public class AuthController {
                     statement.setString(2, passwordHashed);
                     ResultSet resultSet = statement.executeQuery();
                     if (!resultSet.next()) {
+                        resultSet.close();
+                        statement.close();
+                        connection.close();
                         throw new Exception("Invalid email or password.");
                     } else {
-                        System.out.println(resultSet.getString("role"));
+
                         if (resultSet.getString("role").equals("student")){
                            Contex.userModel= new Student_model(resultSet.getString("email"),resultSet.getString("email"));
                         }else{
                             Contex.userModel= new Teacher_model(resultSet.getString("email"),resultSet.getString("email"));
 
                         }
+                        resultSet.close();
+                        statement.close();
+                        connection.close();
 
 
 

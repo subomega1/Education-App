@@ -22,7 +22,12 @@ public class AddCourseController {
                 preparedStatement.setString(1,title);
                 ResultSet resultSet = preparedStatement.executeQuery();
                 if (resultSet.next()){
+
+                    resultSet.close();
+                    preparedStatement.close();
+                    connection.close();
                     throw new Exception("this Course already exists");
+
                 }else {
                     PreparedStatement preparedStatement1 = connection.prepareStatement("insert into teacher_course  value(?,?,?)");
                     preparedStatement1.setString(1,title);
@@ -30,8 +35,15 @@ public class AddCourseController {
                     preparedStatement1.setString(3,Contex.userModel.getEmail());
                     int rows = preparedStatement1.executeUpdate();
                     if (rows>0){
+                        resultSet.close();
+                        preparedStatement1.close();
+                        connection.close();
                         addedSucc = true;
+
                     }else {
+                        resultSet.close();
+                        preparedStatement1.close();
+                        connection.close();
                         throw new Exception("Failed to insert Data");
                     }
                 }

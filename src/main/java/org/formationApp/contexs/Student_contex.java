@@ -10,8 +10,6 @@ public class Student_contex {
    public static  Set<Course_model> coursesBought = new HashSet<Course_model>();
    public static Set<Course_model> allCourses = new HashSet<Course_model>();
 
-
-
    public  static void  allCoursesUpdate() throws Exception {
          allCourses.clear();
       GetCoursesController.allCourses();

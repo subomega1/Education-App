@@ -2,14 +2,10 @@ package org.formationApp.DB.models;
 
 public abstract class User_model {
 
-    private String username,email , password ,role="";
+    private String username,email  ,role="";
+
     public String getUsername(){
         return username;
-    }
-
-
-    public String getPassword(){
-        return password;
     }
     public String getEmail(){
         return email;
@@ -22,9 +18,6 @@ public abstract class User_model {
     }
     public void setEmail(String email){
         this.email= email;
-    }
-    public void setPassword(String password){
-        this.password = password;
     }
     public void setRole(String role){
         this.role= role;

@@ -24,7 +24,11 @@ public class BuyCourseController {
 
             if (rows>0){
                 affected=true;
+                statement.close();
+                connection.close();
             }else {
+                statement.close();
+                connection.close();
                 throw new Exception("Could not insert data");
             }
 

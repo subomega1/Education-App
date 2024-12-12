@@ -123,6 +123,8 @@ public class LoginPage {
             }
         });
         loginFormContainer.add(passwordField);
+
+        //sumbit Button Container
         JPanel sumbitButtonContainer = new JPanel();
         sumbitButtonContainer.setPreferredSize(new Dimension(400,180));
         sumbitButtonContainer.setLayout(new FlowLayout(FlowLayout.LEFT,0,30));
@@ -130,7 +132,7 @@ public class LoginPage {
         loginFormContainer.add(sumbitButtonContainer);
 
 
-
+        //Sumbit Button
         JButton sumbitButton = new JButton("LOGIN");
         sumbitButton.setPreferredSize(new Dimension(400, 40));
         sumbitButton.setBorder(Design_Assets.IndigoBorder.border);
@@ -150,34 +152,29 @@ public class LoginPage {
                     throw  new Exception("please fill the email and password fields");
                 }
                             String email = emailField.getText();
-                            char[] password = passwordField.getPassword();
-                            String passwordString = new String(password); // Convert char[] to String if needed
-                            System.out.println("Entered Username: " + email );
-                            System.out.println("Entered Password: " + passwordString);
+                            String passwordString = new String(passwordField.getPassword());
                             AuthController.login(email,passwordString );
 
                             if (Contex.accepted && Contex.userModel.getRole().equals("student") ) {
-                               // if ()
                                 frame.remove(centrePanel);
                                 System.gc();
                                 new StudentPage(frame);
-                                frame.revalidate();
-                                frame.repaint();
+
                             }
                             else if (Contex.accepted && Contex.userModel.getRole().equals("teacher")){
                                 frame.remove(centrePanel);
                                 System.gc();
                                 new TeacherPage(frame);
-                                frame.revalidate();
-                                frame.repaint();
+
                             }
                         } catch (Exception Error) {
-
                             errorMsg.setText(Error.getMessage());
                             errorMsg.repaint();
-                            System.out.println( Error.getMessage());
 
-                        }
+                        }finally {
+                        frame.revalidate();
+                        frame.repaint();
+                    }
 
                 }
 
@@ -188,6 +185,7 @@ public class LoginPage {
 
 
         });
+        //Redirect to Sign Up Page
         JButton redirectToSignUp = new JButton();
         redirectToSignUp.setPreferredSize(new Dimension(400,30));
         redirectToSignUp.setText("You have no account? Sign Up");
