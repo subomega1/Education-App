@@ -35,13 +35,13 @@ Run the following SQL commands to create the required tables:
 CREATE TABLE user_table (
     email VARCHAR(255) PRIMARY KEY,
     username VARCHAR(255),
-    password TEXT,
+    password MEDIUMTEXT,
     role VARCHAR(50)
 );
 
 CREATE TABLE teacher_course (
     title VARCHAR(255) PRIMARY KEY,
-    description TEXT,
+    description MEDIUMTEXT,
     teacher_id VARCHAR(255),
     FOREIGN KEY (teacher_id) REFERENCES user_table(email)
 );
