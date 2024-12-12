@@ -6,8 +6,7 @@ import java.util.HexFormat;
 public class HashFunction {
     public  static String hashString (String s) throws UnsupportedEncodingException {
 
-        String salt = "WAz7k8e39z6RUDMLxeCdPOqreMq+LYol5LR1wT0WL40=";
-        //ahmed 38343339203930343820393438332038373837203837303020
+        String salt = ""; //put your salt 
         byte[] sBytes = s.getBytes("UTF-8");
         byte[] saltBytes = salt.getBytes();
         String hexString = HexFormat.of().formatHex(sBytes) + HexFormat.of().formatHex(saltBytes) ;
